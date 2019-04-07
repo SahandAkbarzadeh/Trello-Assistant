@@ -150,5 +150,25 @@ namespace TrelloAsistant
         }
 
         #endregion
+
+        private void ToDoneButton_Click(object sender, EventArgs e)
+        {
+            presenter.DoneCurrentTask();
+        }
+
+        private void ToPoolButton_Click(object sender, EventArgs e)
+        {
+            presenter.ToPoolCurrentTask();
+        }
+
+        private void ToTestingButton_Click(object sender, EventArgs e)
+        {
+            presenter.TestCurrentTask();
+        }
+
+        private void SyncButton_Click(object sender, EventArgs e)
+        {
+            presenter.Sync();
+        }
     }
 }

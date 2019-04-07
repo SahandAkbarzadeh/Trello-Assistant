@@ -86,7 +86,7 @@ namespace TrelloAssistant.Utils
             var result = new Dictionary<string, List<ICard>>();
             foreach(var task in Tasks)
             {
-                if (task.Id == CurrentTask.Id)
+                if (CurrentTask != null && task.Id == CurrentTask.Id)
                     continue;
                 if (!result.ContainsKey(task.Board.Name))
                     result[task.Board.Name] = new List<ICard>();
@@ -99,10 +99,55 @@ namespace TrelloAssistant.Utils
         {
             Loading(true);
             card.List = ScrumBoards.Where((b) => b.Id == card.Board.Id).First().Lists.Where((list) => list.Name.Contains(DoingTag)).First();
-            CurrentTask.List = ScrumBoards.Where((b) => b.Id == CurrentTask.Board.Id).First().Lists.Where((list) => list.Name.Contains(MainPoolTag)).First();
+            if (CurrentTask != null)
+                CurrentTask.List = ScrumBoards.Where((b) => b.Id == CurrentTask.Board.Id).First().Lists.Where((list) => list.Name.Contains(MainPoolTag)).First();
             CurrentTask = card;
 
             OnCurrentTaskChanged(CurrentTask == null ? null : CurrentTask.Name);
+            UpdateTaskList();
+
+            Loading(false);
+        }
+
+        public void DoneCurrentTask()
+        {
+            if (CurrentTask == null)
+                return;
+            Loading(true);
+            CurrentTask.List = ScrumBoards.Where((b) => b.Id == CurrentTask.Board.Id).First().Lists.Where((list) => list.Name.Contains(DoneTag)).First();
+            Tasks = Tasks.Where((item) => item.Id != CurrentTask.Id).ToList();
+            CurrentTask = null;
+
+            OnCurrentTaskChanged(null);
+            UpdateTaskList();
+
+            Loading(false);
+        }
+
+        public void ToPoolCurrentTask()
+        {
+            if (CurrentTask == null)
+                return;
+            Loading(true);
+            CurrentTask.List = ScrumBoards.Where((b) => b.Id == CurrentTask.Board.Id).First().Lists.Where((list) => list.Name.Contains(MainPoolTag)).First();
+            CurrentTask = null;
+
+            OnCurrentTaskChanged(null);
+            UpdateTaskList();
+
+            Loading(false);
+        }
+
+        public void TestCurrentTask()
+        {
+            if (CurrentTask == null)
+                return;
+            Loading(true);
+            CurrentTask.List = ScrumBoards.Where((b) => b.Id == CurrentTask.Board.Id).First().Lists.Where((list) => list.Name.Contains(TestingTag)).First();
+            Tasks = Tasks.Where((item) => item.Id != CurrentTask.Id).ToList();
+            CurrentTask = null;
+
+            OnCurrentTaskChanged(null);
             UpdateTaskList();
 
             Loading(false);

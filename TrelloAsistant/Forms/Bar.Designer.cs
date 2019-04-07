@@ -78,6 +78,7 @@
             this.ToDoneButton.Size = new System.Drawing.Size(25, 25);
             this.ToDoneButton.TabIndex = 2;
             this.ToDoneButton.UseVisualStyleBackColor = false;
+            this.ToDoneButton.Click += new System.EventHandler(this.ToDoneButton_Click);
             // 
             // ToPoolButton
             // 
@@ -91,6 +92,7 @@
             this.ToPoolButton.Size = new System.Drawing.Size(25, 25);
             this.ToPoolButton.TabIndex = 3;
             this.ToPoolButton.UseVisualStyleBackColor = false;
+            this.ToPoolButton.Click += new System.EventHandler(this.ToPoolButton_Click);
             // 
             // ToTestingButton
             // 
@@ -104,6 +106,7 @@
             this.ToTestingButton.Size = new System.Drawing.Size(25, 25);
             this.ToTestingButton.TabIndex = 4;
             this.ToTestingButton.UseVisualStyleBackColor = false;
+            this.ToTestingButton.Click += new System.EventHandler(this.ToTestingButton_Click);
             // 
             // SyncButton
             // 
@@ -117,6 +120,7 @@
             this.SyncButton.Size = new System.Drawing.Size(25, 25);
             this.SyncButton.TabIndex = 5;
             this.SyncButton.UseVisualStyleBackColor = false;
+            this.SyncButton.Click += new System.EventHandler(this.SyncButton_Click);
             // 
             // StatusLabel
             // 
