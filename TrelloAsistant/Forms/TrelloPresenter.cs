@@ -95,7 +95,7 @@ namespace TrelloAssistant.Utils
             OnTaskListChanged(result);
         }
 
-        public async void SetCurrentTask(ICard card)
+        public void SetCurrentTask(ICard card)
         {
             Loading(true);
             card.List = ScrumBoards.Where((b) => b.Id == card.Board.Id).First().Lists.Where((list) => list.Name.Contains(DoingTag)).First();
