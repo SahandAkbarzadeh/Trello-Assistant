@@ -121,7 +121,7 @@
             // StatusLabel
             // 
             this.StatusLabel.AutoEllipsis = true;
-            this.StatusLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.StatusLabel.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.StatusLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.StatusLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLabel.ForeColor = System.Drawing.Color.White;
