@@ -35,6 +35,7 @@
             this.ToPoolButton = new System.Windows.Forms.Button();
             this.ToTestingButton = new System.Windows.Forms.Button();
             this.SyncButton = new System.Windows.Forms.Button();
+            this.StatusLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DragIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -117,12 +118,28 @@
             this.SyncButton.TabIndex = 5;
             this.SyncButton.UseVisualStyleBackColor = false;
             // 
+            // StatusLabel
+            // 
+            this.StatusLabel.AutoEllipsis = true;
+            this.StatusLabel.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.StatusLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StatusLabel.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.StatusLabel.ForeColor = System.Drawing.Color.White;
+            this.StatusLabel.Location = new System.Drawing.Point(27, 5);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(311, 21);
+            this.StatusLabel.TabIndex = 6;
+            this.StatusLabel.Text = "Loading";
+            this.StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.StatusLabel.Visible = false;
+            // 
             // Bar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(452, 30);
+            this.Controls.Add(this.StatusLabel);
             this.Controls.Add(this.SyncButton);
             this.Controls.Add(this.ToTestingButton);
             this.Controls.Add(this.ToPoolButton);
@@ -147,6 +164,7 @@
         private System.Windows.Forms.Button ToPoolButton;
         private System.Windows.Forms.Button ToTestingButton;
         private System.Windows.Forms.Button SyncButton;
+        private System.Windows.Forms.Label StatusLabel;
     }
 }
 

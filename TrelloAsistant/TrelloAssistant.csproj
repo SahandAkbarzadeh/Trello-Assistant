@@ -114,6 +114,7 @@
     <Compile Include="Utils\IniFile.cs" />
     <Compile Include="Utils\NumberUtils.cs" />
     <Compile Include="Utils\TaskbarColor.cs" />
+    <Compile Include="Forms\TrelloPresenter.cs" />
     <EmbeddedResource Include="Forms\Bar.resx">
       <DependentUpon>Bar.cs</DependentUpon>
     </EmbeddedResource>

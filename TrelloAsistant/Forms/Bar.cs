@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskbarHook;
 using TrelloAssistant.Utils;
+using System.Linq;
 
 namespace TrelloAsistant
 {
@@ -31,7 +32,9 @@ namespace TrelloAsistant
             SetupTrelloClient();
         }
 
-        private void SetupTrelloClient()
+        TrelloPresenter presenter;
+
+        private async void SetupTrelloClient()
         {
             var appKey = Config.Get(ConfigKeys.TrelloAppKey);
             var userToken = Config.Get(ConfigKeys.TrelloUserToken);
@@ -44,6 +47,11 @@ namespace TrelloAsistant
             TrelloAuthorization.Default.AppKey = appKey;
             TrelloAuthorization.Default.UserToken = userToken;
 
+            ITrelloFactory factory = new TrelloFactory();
+
+            presenter = new TrelloPresenter();
+            presenter.OnLoadingChanged += LoadingChanged;
+            await presenter.Init();
         }
 
         TaskbarElement process;
@@ -104,6 +112,16 @@ namespace TrelloAsistant
 
         #endregion
 
+        #region Events
 
+        void LoadingChanged(bool loading)
+        {
+            Enabled = !loading;
+            CurrentTaskLabel.Visible = !loading;
+            StatusLabel.Visible = loading;
+            StatusLabel.Text = "Please wait...";
+        }
+
+        #endregion
     }
 }
