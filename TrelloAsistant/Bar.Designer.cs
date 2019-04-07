@@ -1,6 +1,6 @@
 ﻿namespace TrelloAsistant
 {
-    partial class Form1
+    partial class Bar
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Bar));
+            this.SuspendLayout();
+            // 
+            // Bar
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(363, 66);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Bar";
+            this.ShowInTaskbar = false;
+            this.Text = "Trello Assistant";
+            this.TopMost = true;
+            this.Load += new System.EventHandler(this.Bar_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
