@@ -1,4 +1,5 @@
-﻿using MaterialSkin.Controls;
+﻿using Manatee.Trello;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,22 @@ namespace TrelloAsistant
         {
             await SetupTaskbar();
             SetupFormAppearance();
+            SetupTrelloClient();
+        }
+
+        private void SetupTrelloClient()
+        {
+            var appKey = Config.Get(ConfigKeys.TrelloAppKey);
+            var userToken = Config.Get(ConfigKeys.TrelloUserToken);
+
+            if (appKey == string.Empty || userToken == string.Empty) {
+                MessageBox.Show("Trello.AppKey or Trello.UserToken must be provided in the config file");
+                Environment.Exit(1);
+            }
+
+            TrelloAuthorization.Default.AppKey = appKey;
+            TrelloAuthorization.Default.UserToken = userToken;
+
         }
 
         TaskbarElement process;

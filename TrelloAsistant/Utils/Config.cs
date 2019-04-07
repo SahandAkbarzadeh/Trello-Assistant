@@ -14,7 +14,7 @@ namespace TrelloAssistant.Utils
 
         public static String Get(ConfigKeys key)
         {
-            return File.KeyExists(key.GetName(), key.GetSection()) ? File.Read(key.GetName(), key.GetSection()) : "";
+            return File.KeyExists(key.GetName(), key.GetSection()) ? File.Read(key.GetName() ?? string.Empty , key.GetSection()) : string.Empty;
         }
 
         public static void Set(ConfigKeys key, String value)
@@ -28,7 +28,15 @@ namespace TrelloAssistant.Utils
     {
         [Section("General")]
         [Description("BarPosition")]
-        BarPosition
+        BarPosition,
+
+        [Section("Trello")]
+        [Description("AppKey")]
+        TrelloAppKey,
+
+        [Section("Trello")]
+        [Description("UserToken")]
+        TrelloUserToken,
     }
 
     public static class MyEnumExtensions
