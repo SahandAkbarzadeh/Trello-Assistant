@@ -9,9 +9,17 @@ namespace TrelloAssistant.Utils
     public class ConfigUtils
     {
        
-        public static String LocationToString(RECT location)
+        public static string PositionToString(int X, int Y)
         {
+            return X.ToString() + "," + Y.ToString();
+        }
 
+        public static (int X, int Y) StringToPosition(string val)
+        {
+            if (val == null || val == string.Empty) return (0, 0);
+            var parts = val.Trim().Split(',');
+            // TODO: validate parts
+            return (int.Parse(parts[0]), int.Parse(parts[1]));
         }
 
     }

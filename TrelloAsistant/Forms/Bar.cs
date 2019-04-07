@@ -36,7 +36,8 @@ namespace TrelloAsistant
             taskbar = TaskBarFactory.GetTaskbar();
             process = await taskbar.AddToTaskbar();
             Size = new Size(452, taskbar.Rectangle.Bottom - taskbar.Rectangle.Top);
-            process.SetPosition(600, 0);
+            var position = ConfigUtils.StringToPosition(Config.Get(ConfigKeys.BarPosition));
+            process.SetPosition(position.X, position.Y);
         }
 
         private void SetupFormAppearance()
@@ -59,6 +60,30 @@ namespace TrelloAsistant
             DragIcon.BackColor = color;
 
         }
+
+        #region Drag
+        bool IsDragging = false;
+        private void Drag_MouseDown(object sender, MouseEventArgs e)
+        {
+            IsDragging = true;
+        }
+
+        private void Drag_MouseUp(object sender, MouseEventArgs e)
+        {
+            IsDragging = false;
+        }
+
+        private void Drag_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (IsDragging)
+            {
+                var position = ConfigUtils.StringToPosition(Config.Get(ConfigKeys.BarPosition));
+                int X = this.Location.X - taskbar.Rectangle.Left + e.X;
+                process.SetPosition(NumberUtils.Clamp(X, position.Y, taskbar.Rectangle.Right - 300), 0);
+                Config.Set(ConfigKeys.BarPosition, ConfigUtils.PositionToString(X, position.Y));
+            }
+        }
+        #endregion
 
         #endregion
 

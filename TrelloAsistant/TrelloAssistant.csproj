@@ -64,6 +64,7 @@
     <Compile Include="Utils\Config.cs" />
     <Compile Include="Utils\ConfigUtils.cs" />
     <Compile Include="Utils\IniFile.cs" />
+    <Compile Include="Utils\NumberUtils.cs" />
     <Compile Include="Utils\TaskbarColor.cs" />
     <EmbeddedResource Include="Forms\Bar.resx">
       <DependentUpon>Bar.cs</DependentUpon>

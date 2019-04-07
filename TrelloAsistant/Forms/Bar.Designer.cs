@@ -48,6 +48,9 @@
             this.DragIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.DragIcon.TabIndex = 0;
             this.DragIcon.TabStop = false;
+            this.DragIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseDown);
+            this.DragIcon.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseMove);
+            this.DragIcon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Drag_MouseUp);
             // 
             // CurrentTaskLabel
             // 
