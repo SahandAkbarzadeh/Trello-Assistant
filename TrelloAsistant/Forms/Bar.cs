@@ -170,5 +170,10 @@ namespace TrelloAsistant
         {
             presenter.Sync();
         }
+
+        private void CurrentTaskLabel_DoubleClick(object sender, EventArgs e)
+        {
+            presenter.OpenCurrentCard();
+        }
     }
 }

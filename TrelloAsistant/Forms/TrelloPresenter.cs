@@ -153,6 +153,13 @@ namespace TrelloAssistant.Utils
             Loading(false);
         }
 
+        public void OpenCurrentCard()
+        {
+            if (CurrentTask == null)
+                return;
+            System.Diagnostics.Process.Start(CurrentTask.ShortUrl);
+        }
+
         #region Events
         public delegate void StatusChangedDelegate(string status);
         public event StatusChangedDelegate OnStatusChanged;

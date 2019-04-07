@@ -65,6 +65,7 @@
             this.CurrentTaskLabel.TabIndex = 1;
             this.CurrentTaskLabel.Text = "This is a sample Task name and acts like a long text so don\'t mind it please";
             this.CurrentTaskLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.CurrentTaskLabel.DoubleClick += new System.EventHandler(this.CurrentTaskLabel_DoubleClick);
             // 
             // ToDoneButton
             // 
