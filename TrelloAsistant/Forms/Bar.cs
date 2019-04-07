@@ -57,12 +57,10 @@ namespace TrelloAsistant
                 MessageBox.Show("Some of the Tags are missing.");
                 Environment.Exit(1);
             }
-
-            ITrelloFactory factory = new TrelloFactory();
-
             presenter = new TrelloPresenter();
             presenter.OnLoadingChanged += LoadingChanged;
             presenter.OnCurrentTaskChanged += CurrentTaskChanged;
+            presenter.OnTaskListChanged += TaskListChanged;
             await presenter.Init();
         }
 
@@ -137,6 +135,18 @@ namespace TrelloAsistant
         void CurrentTaskChanged(string name)
         {
             CurrentTaskLabel.Text = name == null ? "Right Click To Select A Task..." : name;
+        }
+
+        void TaskListChanged(Dictionary<string, List<ICard>> tasks)
+        {
+            ContextMenu menu = new ContextMenu();
+            foreach (var taskList in tasks)
+            {
+                var items = new List<MenuItem>();
+                items.AddRange(taskList.Value.Select((item) => new MenuItem(item.Name)));
+                menu.MenuItems.Add(taskList.Key, items.ToArray());
+            }
+            CurrentTaskLabel.ContextMenu = menu;
         }
 
         #endregion

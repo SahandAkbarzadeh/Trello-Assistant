@@ -75,7 +75,24 @@ namespace TrelloAssistant.Utils
                 CurrentTask = doingTasks.FirstOrDefault();
                 OnCurrentTaskChanged(CurrentTask == null ? null : CurrentTask.Name);
             }
+
+            UpdateTaskList();
+
             Loading(false);
+        }
+
+        void UpdateTaskList()
+        {
+            var result = new Dictionary<string, List<ICard>>();
+            foreach(var task in Tasks)
+            {
+                if (task.Id == CurrentTask.Id)
+                    continue;
+                if (!result.ContainsKey(task.Board.Name))
+                    result[task.Board.Name] = new List<ICard>();
+                result[task.Board.Name].Add(task);
+            }
+            OnTaskListChanged(result);
         }
 
         #region Events
@@ -83,7 +100,7 @@ namespace TrelloAssistant.Utils
         public event StatusChangedDelegate OnStatusChanged;
         public delegate void CurrentTaskChangedDelegate(string name);
         public event CurrentTaskChangedDelegate OnCurrentTaskChanged;
-        public delegate void TaskListChangedDelegate();
+        public delegate void TaskListChangedDelegate(Dictionary<string, List<ICard>> tasks);
         public event TaskListChangedDelegate OnTaskListChanged;
         public delegate void LoadingStatusChangedDelegate(bool loading);
         public event LoadingStatusChangedDelegate OnLoadingChanged;
