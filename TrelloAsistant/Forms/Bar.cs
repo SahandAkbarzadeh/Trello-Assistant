@@ -35,7 +35,7 @@ namespace TrelloAsistant
         {
             taskbar = TaskBarFactory.GetTaskbar();
             process = await taskbar.AddToTaskbar();
-            Size = new Size(452, taskbar.Rectangle.Bottom - taskbar.Rectangle.Top);
+            Size = new Size(452, 30);
             var position = ConfigUtils.StringToPosition(Config.Get(ConfigKeys.BarPosition));
             process.SetPosition(position.X, position.Y);
         }
