@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TaskbarHook;
 using TrelloAssistant.Utils;
-using System.Linq;
 
 namespace TrelloAsistant
 {
@@ -47,10 +46,23 @@ namespace TrelloAsistant
             TrelloAuthorization.Default.AppKey = appKey;
             TrelloAuthorization.Default.UserToken = userToken;
 
+            if (
+                Config.Get(ConfigKeys.DoingTag) == string.Empty ||
+                Config.Get(ConfigKeys.DoneTag) == string.Empty ||
+                Config.Get(ConfigKeys.MainPoolTag) == string.Empty ||
+                Config.Get(ConfigKeys.PoolTag) == string.Empty ||
+                Config.Get(ConfigKeys.ScrumTag) == string.Empty ||
+                Config.Get(ConfigKeys.TestingTag) == string.Empty )
+            {
+                MessageBox.Show("Some of the Tags are missing.");
+                Environment.Exit(1);
+            }
+
             ITrelloFactory factory = new TrelloFactory();
 
             presenter = new TrelloPresenter();
             presenter.OnLoadingChanged += LoadingChanged;
+            presenter.OnCurrentTaskChanged += CurrentTaskChanged;
             await presenter.Init();
         }
 
@@ -120,6 +132,11 @@ namespace TrelloAsistant
             CurrentTaskLabel.Visible = !loading;
             StatusLabel.Visible = loading;
             StatusLabel.Text = "Please wait...";
+        }
+
+        void CurrentTaskChanged(string name)
+        {
+            CurrentTaskLabel.Text = name == null ? "Right Click To Select A Task..." : name;
         }
 
         #endregion

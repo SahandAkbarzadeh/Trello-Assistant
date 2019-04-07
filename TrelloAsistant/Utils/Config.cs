@@ -37,6 +37,31 @@ namespace TrelloAssistant.Utils
         [Section("Trello")]
         [Description("UserToken")]
         TrelloUserToken,
+
+        [Section("Tags")]
+        [Description("ScrumTag")]
+        ScrumTag,
+
+        [Section("Tags")]
+        [Description("PoolTag")]
+        PoolTag,
+
+        [Section("Tags")]
+        [Description("MainPoolTag")]
+        MainPoolTag,
+
+        [Section("Tags")]
+        [Description("DoneTag")]
+        DoneTag,
+
+        [Section("Tags")]
+        [Description("DoingTag")]
+        DoingTag,
+
+        [Section("Tags")]
+        [Description("TestingTag")]
+        TestingTag,
+
     }
 
     public static class MyEnumExtensions
