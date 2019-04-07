@@ -143,7 +143,7 @@ namespace TrelloAsistant
             foreach (var taskList in tasks)
             {
                 var items = new List<MenuItem>();
-                items.AddRange(taskList.Value.Select((item) => new MenuItem(item.Name)));
+                items.AddRange(taskList.Value.Select((item) => new MenuItem(item.Name, (sender, args) => { presenter.SetCurrentTask(item); })));
                 menu.MenuItems.Add(taskList.Key, items.ToArray());
             }
             CurrentTaskLabel.ContextMenu = menu;

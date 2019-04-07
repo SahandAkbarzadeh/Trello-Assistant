@@ -95,6 +95,19 @@ namespace TrelloAssistant.Utils
             OnTaskListChanged(result);
         }
 
+        public async void SetCurrentTask(ICard card)
+        {
+            Loading(true);
+            card.List = ScrumBoards.Where((b) => b.Id == card.Board.Id).First().Lists.Where((list) => list.Name.Contains(DoingTag)).First();
+            CurrentTask.List = ScrumBoards.Where((b) => b.Id == CurrentTask.Board.Id).First().Lists.Where((list) => list.Name.Contains(MainPoolTag)).First();
+            CurrentTask = card;
+
+            OnCurrentTaskChanged(CurrentTask == null ? null : CurrentTask.Name);
+            UpdateTaskList();
+
+            Loading(false);
+        }
+
         #region Events
         public delegate void StatusChangedDelegate(string status);
         public event StatusChangedDelegate OnStatusChanged;
