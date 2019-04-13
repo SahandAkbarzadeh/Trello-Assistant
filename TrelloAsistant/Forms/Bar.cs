@@ -134,7 +134,7 @@ namespace TrelloAsistant
 
         void CurrentTaskChanged(string name)
         {
-            CurrentTaskLabel.Text = name == null ? "Right Click To Select A Task..." : name;
+            CurrentTaskLabel.Text = name ?? "Right Click To Select A Task...";
         }
 
         void TaskListChanged(Dictionary<string, List<ICard>> tasks)
@@ -166,9 +166,9 @@ namespace TrelloAsistant
             presenter.TestCurrentTask();
         }
 
-        private void SyncButton_Click(object sender, EventArgs e)
+        private async void SyncButton_Click(object sender, EventArgs e)
         {
-            presenter.Sync();
+            await presenter.Sync();
         }
 
         private void CurrentTaskLabel_DoubleClick(object sender, EventArgs e)
