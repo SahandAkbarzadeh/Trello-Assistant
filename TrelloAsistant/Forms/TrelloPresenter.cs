@@ -13,12 +13,12 @@ namespace TrelloAssistant.Utils
 
         #region Tags
 
-        private string DoneTag = Config.Get(ConfigKeys.DoneTag);
-        private string DoingTag = Config.Get(ConfigKeys.DoingTag);
-        private string TestingTag = Config.Get(ConfigKeys.TestingTag);
-        private string ScrumTag = Config.Get(ConfigKeys.ScrumTag);
-        private string PoolTag = Config.Get(ConfigKeys.PoolTag);
-        private string MainPoolTag = Config.Get(ConfigKeys.MainPoolTag);
+        private readonly string DoneTag = Config.Get(ConfigKeys.DoneTag);
+        private readonly string DoingTag = Config.Get(ConfigKeys.DoingTag);
+        private readonly string TestingTag = Config.Get(ConfigKeys.TestingTag);
+        private readonly string ScrumTag = Config.Get(ConfigKeys.ScrumTag);
+        private readonly string PoolTag = Config.Get(ConfigKeys.PoolTag);
+        private readonly string MainPoolTag = Config.Get(ConfigKeys.MainPoolTag);
 
 
         #endregion
@@ -73,7 +73,7 @@ namespace TrelloAssistant.Utils
             } else
             {
                 CurrentTask = doingTasks.FirstOrDefault();
-                OnCurrentTaskChanged(CurrentTask == null ? null : CurrentTask.Name);
+                OnCurrentTaskChanged(CurrentTask?.Name);
             }
 
             UpdateTaskList();
@@ -103,7 +103,7 @@ namespace TrelloAssistant.Utils
                 CurrentTask.List = ScrumBoards.Where((b) => b.Id == CurrentTask.Board.Id).First().Lists.Where((list) => list.Name.Contains(MainPoolTag)).First();
             CurrentTask = card;
 
-            OnCurrentTaskChanged(CurrentTask == null ? null : CurrentTask.Name);
+            OnCurrentTaskChanged(CurrentTask?.Name);
             UpdateTaskList();
 
             Loading(false);
